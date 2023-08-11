@@ -6,17 +6,17 @@ RSpec.describe Dog do
     fluffy = Dog.new("Fluffy")
   end
 
-  xit "can bark" do
+  it "can bark" do
     fluffy = Dog.new("Fluffy")
     expect(fluffy.bark).to eq("Fluffy goes Bark!")
   end
 
-  xit "can woof" do
+  it "can woof" do
     fluffy = Dog.new("Fluffy")
     expect(fluffy.woof).to eq("Woof!")
   end
 
-  xit "can always bark" do
+  it "can always bark" do
     expect(Dog.woof).to eq("Self woof!")
   end
 
