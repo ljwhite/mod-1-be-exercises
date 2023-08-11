@@ -1,4 +1,4 @@
-require 'barkable'
+require './lib/barkable'
 require 'pry'
 require 'pry-byebug'
 #binding.pry

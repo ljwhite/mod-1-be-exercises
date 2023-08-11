@@ -8,10 +8,10 @@ puts max.woof
 # `Dog` =>
 # `.woof` =>
 
-# puts Dog.woof
+puts Dog.woof
 
 ## Is there any difference between the two methods above? (max.woof and Dog.woof)?
 
 ## Un-comment the line of code below, does it work? Why or why not?
-# Dog.bark
+puts max.bark
 
