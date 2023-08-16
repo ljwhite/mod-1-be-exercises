@@ -1,4 +1,5 @@
 require './lib/pirate'
+require 'pry'
 
 RSpec.describe Pirate do
   it "has name" do

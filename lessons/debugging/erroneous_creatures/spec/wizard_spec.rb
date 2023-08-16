@@ -1,4 +1,5 @@
 require './lib/wizard'
+require 'pry'
 
 RSpec.describe Wizard do
   it "has name" do

@@ -1,3 +1,5 @@
+require 'pry'
+
 class Centaur
 
   attr_reader :name, :breed
@@ -9,6 +11,7 @@ class Centaur
     @standing = standing
     @laying = laying
     @sleeping = sleeping
+    @crankiness = 0
   end
 
   def shoot
@@ -31,9 +34,9 @@ class Centaur
 
   def cranky?
     if @crankiness < 3
-      "false"
+      false
     else
-      "true"
+      true
     end
   end
 

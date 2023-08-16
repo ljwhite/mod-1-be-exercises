@@ -1,4 +1,5 @@
 require './lib/medusa'
+require 'pry'
 
 RSpec.describe Medusa do
   it "has a name" do
@@ -22,7 +23,7 @@ RSpec.describe Medusa do
   it "when first created she has no statues" do
     medusa = Medusa.new("Cassiopeia")
 
-    expect(medusa.statues.empty?).to eq([])
+    expect(medusa.statues.empty?).to eq(true)
   end
 
   it "when staring at a person she gains a statue" do
@@ -30,7 +31,6 @@ RSpec.describe Medusa do
     victim = Person.new("Perseus")
 
     medusa.stare(victim)
-
     expect(medusa.statues.count).to eq(1)
     expect(medusa.statues.first.name).to eq("Perseus")
   end

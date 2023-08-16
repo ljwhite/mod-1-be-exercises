@@ -1,4 +1,5 @@
 require'./lib/dragon'
+require 'pry'
 
 RSpec.describe Dragon do
   it "has a name" do
