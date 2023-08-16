@@ -1,6 +1,11 @@
 # Use .each to complete the following:
 
 singers = ["billie", "ariana", "lizzo", "leon"]
+arr  = []
+singers.each do |name|
+    arr << name.length
+end
+p arr
 
 # 1. Can you print out their names capitalized?
 # 2. Can you print out their names in all caps?

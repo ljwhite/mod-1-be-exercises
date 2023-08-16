@@ -8,7 +8,8 @@
 names = ['richard', 'chris', 'dani']
 
 names.each do |name|
-  name.capitalize
+  puts name.capitalize
+  puts name
 end
 
 p names

@@ -1,6 +1,11 @@
 # Use .each to complete the following:
 
 numbers = [1,2,3,4,5]
+sum = 0
+numbers.each do |x|
+    sum += x
+    puts sum
+end
 
 # 1. Can you create a new array with only the odd numbers?
 # 2. Can you create a new array with only the even numbers?

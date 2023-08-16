@@ -10,9 +10,9 @@
 # 4. Is there an alternative you could propose?
 
 students = ["Megan", "Bob", "Mike"]
-# puts students[0]
-# puts students[1]
-# puts students[2]
+puts students[0]
+puts students[1]
+puts students[2]
 
 # Go ahead and play in your terminal to see what the outputs are.
 # After you take a guess, uncomment each `puts` one at a time.

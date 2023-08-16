@@ -4,6 +4,7 @@
 # your return values to the terminal.
 
 students = ["Megan", "Bob", "Mike"]
+students.each {|student| puts student}
 # your code below
 
 
