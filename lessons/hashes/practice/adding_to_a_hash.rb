@@ -3,6 +3,11 @@ suitcase = {
   "pants" => 1
 }
 
+suitcase["jackets"] = 2
+suitcase['shirts'] = 4
+suitcase['shoes'] = 2
+suitcase['pants'] += 1
+p suitcase
 # How can we add the following key/value pairs:
 # 1. jackets/2
 # 2. shirts/4

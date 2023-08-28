@@ -9,3 +9,11 @@ fridge_items_1 = ["milk", "eggs", "eggs","eggs", "eggs",
 # as an array structured grocery list?
 
 # 2. What might be a more readable way to structure this?
+
+fridge_items = Hash.new(0)
+
+fridge_items_1.each_with_object(fridge_items) do |fruit, hash|
+    hash[fruit] += 1
+end
+
+p fridge_items

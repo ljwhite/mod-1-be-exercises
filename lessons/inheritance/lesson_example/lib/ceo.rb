@@ -1,11 +1,14 @@
-class Ceo
+require '../lib/employee'
 
-  attr_reader :base_salary,
-              :bonus
+class Ceo < Employee
 
-  def initialize(base_salary, bonus)
+  attr_reader :base_salary, :bonus
+             
+
+  def initialize(base_salary, bonus, name, id)
     @base_salary = base_salary
     @bonus       = bonus
+    super(name, id)
   end
 
 end

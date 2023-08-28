@@ -1,6 +1,10 @@
 # Your turn to create a hash. Make sure to use symbols for the keys.
 
 # Create your hash here
+new_band = {}
+new_band[:bassist] = "Tim"
+p new_band[:bassist]
+p new_band.keys
 
 # Steps
 # 1. Create a hash called new_band.

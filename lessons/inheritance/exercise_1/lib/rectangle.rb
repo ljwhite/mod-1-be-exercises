@@ -1,4 +1,12 @@
-class Rectangle
+require '../lib/shape'
+
+class Rectangle < Shape
+
+  def initialize(color,length,width)
+    @color = color
+    @length = length
+    @width = width
+  end
 
   # this class should have the following properties:
   # - color

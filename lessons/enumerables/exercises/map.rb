@@ -14,3 +14,5 @@ def kennedy_brothers
 end
 
 p kennedy_brothers
+brothers = ["Robert", "Ted", "Joseph", "John"]
+p brothers.map {|x| x.upcase }

@@ -3,6 +3,9 @@ suitcase = {
   "pants" => 1
 }
 
+p suitcase["socks"]
+p suitcase['pants']
+p suitcase.values
 # How would we get the value of:
 
 # 1. "socks"

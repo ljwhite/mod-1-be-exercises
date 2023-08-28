@@ -15,6 +15,10 @@ new_tv = {
 # Syntax symbol with hash rocket:
 # create hash here
 
+old_tv = { :screen_size => 50}
+p old_tv
 
 # Syntax symbol without hash rocket:
+tv = {screen_size: 50}
+p tv
 # create hash here

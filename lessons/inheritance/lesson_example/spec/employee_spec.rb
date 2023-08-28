@@ -1,4 +1,4 @@
-require './lib/employee'
+require '../lib/employee'
 
 RSpec.describe Employee do
 

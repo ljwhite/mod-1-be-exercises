@@ -5,6 +5,10 @@ suitcase = {
   "shirts" => 4,
   "shoes" => 2
 }
+suitcase['socks'] -= 1
+
+suitcase.delete("jackets")
+p suitcase
 
 # How can we delete:
 
