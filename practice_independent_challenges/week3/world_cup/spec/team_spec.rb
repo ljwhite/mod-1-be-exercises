@@ -42,7 +42,6 @@ describe Team do
         it 'can list players by position' do 
             @team.add_player(@mbappe)
             @team.add_player(@pogba)
-           
             expect(@team.players_by_position("midfielder")).to be_a Array
             expect(@team.players_by_position("midfielder")[0]).to eq @pogba 
             expect(@team.players_by_position("defender")).to be_empty
