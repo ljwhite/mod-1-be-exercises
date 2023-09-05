@@ -39,4 +39,39 @@ describe Dock do
             expect(log[@sup_1]).to eq @eugene
         end
     end
+
+    describe 'dock can charge' do 
+        it 'can charge for a boat rental' do 
+            @dock.rent(@kayak_1, @patrick)
+            expect(@dock).to respond_to(:charge)
+            card = @patrick.credit_card_number
+            result = @dock.charge(@kayak_1)
+            expect(result).to be_a Hash 
+            expect(result.keys).to include :card_number
+            expect(result[:card_number]).to eq card
+            expect(result[:amount]).to eq 0
+            @kayak_1.add_hour
+            @kayak_1.add_hour
+            @kayak_1.add_hour
+            @kayak_1.add_hour
+        end
+        it 'can charge up to the max allowable hours' do 
+            @dock.rent(@kayak_1, @patrick)
+            card = @patrick.credit_card_number
+            result = @dock.charge(@kayak_1)
+            expect(result[:amount]).to eq 0
+            @kayak_1.add_hour
+            result = @dock.charge(@kayak_1)
+            expect(result[:amount]).to eq 20
+            @kayak_1.add_hour
+            result = @dock.charge(@kayak_1)
+            expect(result[:amount]).to eq 40
+            @kayak_1.add_hour
+            result = @dock.charge(@kayak_1)
+            expect(result[:amount]).to eq 60
+            @kayak_1.add_hour
+            result = @dock.charge(@kayak_1)
+            expect(result[:amount]).to eq 60
+        end
+    end
 end
