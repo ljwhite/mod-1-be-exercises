@@ -3,12 +3,13 @@ require './lib/renter'
 require 'pry'
 
 class Dock 
-    attr_reader :name, :max_rental_time, :rental_log
+    attr_reader :name, :max_rental_time, :rental_log, :revenue
 
     def initialize(name, max_rental_time)
         @name = name
         @max_rental_time = max_rental_time
         @rental_log = {}
+        @revenue = 0
     end
 
     def rent(boat,renter)
@@ -25,5 +26,22 @@ class Dock
         hash[:card_number] = @rental_log[boat].credit_card_number
         hash[:amount] = amount
         hash
+    end
+
+    def return(boat)
+        amount = charge(boat)[:amount]
+        @revenue += amount
+        rental_log.delete(boat) if rental_log[boat]
+        rental_log
+    end
+
+    def log_hour 
+        rental_log.keys.each do |boat|
+            boat.add_hour
+        end
+    end
+
+    def revenue 
+        @revenue
     end
 end

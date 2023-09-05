@@ -74,4 +74,46 @@ describe Dock do
             expect(result[:amount]).to eq 60
         end
     end
+
+    describe 'iteration 4' do 
+        it 'can return a boat rental' do 
+            expect(@dock.rental_log.keys).to_not include @kayak_1
+            @dock.rent(@kayak_1, @patrick)
+            expect(@dock.rental_log.keys).to include @kayak_1
+            @dock.return(@kayak_1)
+            expect(@dock.rental_log.keys).to_not include @kayak_1
+        end
+
+        it 'can add an additional rental hour to each active boat' do 
+            @dock.rent(@kayak_1, @patrick)
+            @dock.rent(@kayak_2, @patrick)
+            @dock.rent(@sup_1, @eugene)
+            @sup_1.add_hour
+            expect(@kayak_1.hours_rented).to eq 0
+            expect(@kayak_2.hours_rented).to eq 0
+            expect(@sup_1.hours_rented).to eq 1
+            @dock.log_hour
+            expect(@kayak_1.hours_rented).to eq 1
+            expect(@kayak_2.hours_rented).to eq 1
+            expect(@sup_1.hours_rented).to eq 2
+        end
+
+        it 'can generate total revenue' do 
+            @dock.rent(@kayak_1, @patrick)
+            @dock.rent(@kayak_2, @patrick)
+            @dock.rent(@sup_1, @eugene)
+            @dock.log_hour
+            expect(@dock.revenue).to eq 0
+            @dock.return(@kayak_1)
+            expect(@dock.revenue).to eq 20
+            @dock.log_hour
+            @dock.return(@kayak_2)
+            expect(@dock.revenue).to eq 60
+            @dock.log_hour
+            @dock.log_hour
+            expect(@dock.revenue).to eq 60
+            @dock.return(@sup_1)
+            expect(@dock.revenue).to eq 105
+        end
+    end
 end
