@@ -1,5 +1,5 @@
 require 'rspec'
-require '../lib/team'
+require './lib/team'
 require 'pry'
 
 describe Team do 

@@ -1,4 +1,4 @@
-require '../lib/player'
+require './lib/player'
 require 'pry'
 
 class Team 
