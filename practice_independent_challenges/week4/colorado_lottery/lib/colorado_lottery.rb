@@ -1,5 +1,6 @@
 require "./lib/game"
 require "./lib/contestant"
+require 'pry'
 
 class ColoradoLottery
     attr_reader :registered_contestants,
@@ -7,7 +8,7 @@ class ColoradoLottery
                 :winners 
     
     def initialize 
-        @registered_contestants = Hash.new
+        @registered_contestants = Hash.new{|h,k| h[k]=[]}
         @current_contestants = {}
         @winners = []
     end
@@ -21,7 +22,18 @@ class ColoradoLottery
         return false if !player.game_interests.include?(game.name)
         return false if game.national_drawing == false && player.state_of_residence != "CO"
         true
-
-
     end
+
+    def register_contestant(player,game)
+        @registered_contestants[game] << player if can_register?(player,game)
+        player
+    end
+
+    def eligible_contestants(game)
+        @registered_contestants[game].select do |contestant|
+            contestant.spending_money > game.cost
+        end
+    end
+
+
 end

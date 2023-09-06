@@ -10,6 +10,7 @@ describe ColoradoLottery do
         @pick_4 = Game.new('Pick 4', 2)
         @mega_millions = Game.new('Mega Millions', 5, true)
         @cash_5 = Game.new('Cash 5', 1)
+        @cash_15 = Game.new('Cash 15', 15, true)
         @alexander = Contestant.new({
                        first_name: 'Alexander',
                        last_name: 'Aigades',
@@ -73,6 +74,34 @@ describe ColoradoLottery do
             expect(result3).to be true
             expect(result4).to be false
             expect(result5).to be false
+        end
+    end
+
+    describe 'contestants can be registered@ and listed' do 
+        it 'can register a contestant' do 
+            result1 = @lottery.register_contestant(@alexander, @pick_4)
+            result2 = @lottery.register_contestant(@alexander, @cash_5)
+            result3 = @lottery.register_contestant(@frederick, @mega_millions)
+            expect(@lottery.registered_contestants[@pick_4]).to include @alexander
+            expect(@lottery.registered_contestants.keys).to_not include @cash_5
+            expect(@lottery.registered_contestants[@mega_millions]).to include @frederick
+        end
+
+        it 'can produce a list of eligible contestants' do 
+            result1 = @lottery.register_contestant(@alexander, @pick_4)
+            result2 = @lottery.register_contestant(@alexander, @cash_5)
+            result3 = @lottery.register_contestant(@frederick, @mega_millions)
+            result4 = @lottery.register_contestant(@benjamin, @mega_millions)
+            result5 = @lottery.register_contestant(@frederick, @cash_5)
+            @frederick.add_game_interest('Cash 15')
+            @alexander.add_game_interest('Cash 15')
+            result6 = @lottery.register_contestant(@frederick, @cash_15)
+            result7 = @lottery.register_contestant(@alexander, @cash_15)
+            #binding.pry
+            expect(@lottery.registered_contestants[@cash_15]).to include @alexander
+            expect(@lottery.registered_contestants[@cash_15]).to include @frederick
+            expect(@lottery.eligible_contestants(@cash_15)).to include @frederick
+            expect(@lottery.eligible_contestants(@cash_15)).to_not include @alexander
         end
     end
 end
