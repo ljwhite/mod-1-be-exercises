@@ -61,5 +61,28 @@ describe Curator do
             artist = @curator.find_artist_by_id("1")
             expect(artist).to eq @artist_1
         end
+
+        it 'can return a list of artists and their photographs' do 
+            expected = {@artist_1 => [@photo_1], @artist_2 => [@photo_2]}
+            expect(@curator.breakdown).to eq expected
+        end
+
+        it 'can return a list of artists who have more than one photo' do 
+            photo_3 = double("photo")
+            @curator.add_photograph(photo_3)
+            allow(photo_3).to receive(:artist_id).and_return("2")
+            allow(photo_3).to receive(:name).and_return("How bout these apples")
+            expected = [@artist_2]
+            expect(@curator.prolific_artists).to eq expected
+        end
+
+        it 'list photos taken by an artist from a specific country' do 
+            photo_3 = double("photo")
+            @curator.add_photograph(photo_3)
+            allow(photo_3).to receive(:artist_id).and_return("2")
+            allow(photo_3).to receive(:name).and_return("How bout these apples")
+            expected = [@photo_2, photo_3]
+            expect(@curator.photos_from_country("United States")).to eq expected
+        end
     end
 end
