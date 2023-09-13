@@ -88,9 +88,45 @@ describe Curator do
 
     describe 'it can create artists and photography objects from csv' do 
         it 'can create artists from a csv file' do 
+            expect(@curator.artists.length).to eq 0
             path = "./data/artists.csv"
-            results = @curator.create_artists_from_csv(path)
-            expect
+            @curator.create_artists_from_csv(path)
+            expect(@curator.artists.length).to eq 6
+        end
+
+        it 'can create photographs from a csv file' do 
+            expect(@curator.photographs.length).to eq 0
+            path = "./data/photographs.csv"
+            @curator.create_photographs_from_csv(path)
+            expect(@curator.photographs.length).to eq 4
+        end
+    end
+
+    describe 'it can find artist and photograph age' do 
+        before(:each) do 
+            @curator.add_photograph(@photo_1)
+            @curator.add_photograph(@photo_2)
+            @curator.add_artist(@artist_1)
+            @curator.add_artist(@artist_2)
+        end
+        it 'can find the artists age at a specific photograh' do 
+            result = @curator.find_artist_age(@photo_2)
+            expect(result).to eq 39
+        end
+        it 'can find all photographs taken within a certain range' do 
+            photo_3 = double("photo")
+            photo_4 = double("photo")
+            photo_5 = double("photo")
+            @curator.add_photograph(photo_3)
+            @curator.add_photograph(photo_4)
+            @curator.add_photograph(photo_5)
+            allow(photo_3).to receive(:year).and_return("1950")
+            allow(photo_4).to receive(:year).and_return("1951")
+            allow(photo_5).to receive(:year).and_return("1952")
+            expected = [@photo_1, photo_3, photo_4, photo_5]
+            start = 1950
+            finish = 1955
+            expect(@curator.find_photos_in_range(start,finish)).to eq expected
         end
     end
 end

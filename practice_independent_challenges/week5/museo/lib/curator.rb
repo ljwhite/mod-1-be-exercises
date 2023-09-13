@@ -62,6 +62,24 @@ class Curator
         end
     end
 
+    def create_photographs_from_csv(path)
+        FileIO.load_photographs(path).each do |photo|
+            photo = Photograph.new(photo)
+            add_photograph(photo)
+        end
+    end
+
+    def find_artist_age(photo)
+        artist = find_artist_by_id(photo.artist_id)
+        photo.year.to_i - artist.born.to_i
+    end
+
+    def find_photos_in_range(start,finish)
+        photographs.select do |photo|
+            photo.year.to_i.between?(start,finish)
+        end
+    end
+
 
     
 end
