@@ -85,4 +85,12 @@ describe Curator do
             expect(@curator.photos_from_country("United States")).to eq expected
         end
     end
+
+    describe 'it can create artists and photography objects from csv' do 
+        it 'can create artists from a csv file' do 
+            path = "./data/artists.csv"
+            results = @curator.create_artists_from_csv(path)
+            expect
+        end
+    end
 end

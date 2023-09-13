@@ -1,3 +1,6 @@
+require './lib/file_io'
+require 'csv'
+
 class Curator 
 
     attr_reader :photographs, :artists
@@ -46,5 +49,19 @@ class Curator
         end
         arr
     end
+
+    def data_from_csv(category)
+        path = "data/#{category}.csv"
+        contents = CSV.open(path, headers: true, header_converters: :symbol)
+    end
+
+    def create_artists_from_csv(path)
+        FileIO.load_artists(path).each do |artist|
+            artist = Artist.new(artist)
+            add_artist(artist)
+        end
+    end
+
+
     
 end
